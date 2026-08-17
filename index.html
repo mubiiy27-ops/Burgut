@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BURGUT DROBILKA | Rasmiy Aloqa Havolalari</title>
+    <!-- FontAwesome va Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --gold-primary: #d4af37;
+            --bg-color: #08080a;
+            --card-bg: rgba(18, 18, 22, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Orqa fondagi nur va fantastik effektlar */
+        .bg-glow {
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+            animation: pulseGlow 6s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+        }
+
+        /* Asosiy Karta */
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 28px;
+            padding: 40px 28px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9),
+                        0 0 30px rgba(212, 175, 55, 0.12);
+            text-align: center;
+        }
+
+        /* Oltin ramka konturi */
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            padding: 1px;
+            background: var(--gold-gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        /* SVG Logotip - Inografikadagi Burgut */
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            filter: blur(10px);
+            opacity: 0.5;
+            animation: rotateGlow 8s linear infinite;
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .avatar-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #000;
+            border: 2px solid var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .eagle-svg {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+        }
+
+        /* Sarlavhalar */
+        .brand-title {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .brand-subtitle {
+            color: #8e8e93;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        /* Shior / Badges */
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: rgba(212, 175, 55, 0.08);
+            color: #d4af37;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Tugmalar (Links) */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .link-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .link-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .link-card:hover .icon-box {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .instagram-bg {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+            color: #fff;
+        }
+
+        .youtube-bg {
+            background: #FF0000;
+            color: #fff;
+        }
+
+        .info-text {
+            text-align: left;
+        }
+
+        .info-text .title {
+            font-size: 15px;
+            font-weight: 700;
+            display: block;
+            color: #f5f5f7;
+        }
+
+        .info-text .subtitle {
+            font-size: 12px;
+            color: #8e8e93;
+            display: block;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        .arrow {
+            color: #d4af37;
+            font-size: 14px;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        .footer-text {
+            margin-top: 36px;
+            font-size: 11px;
+            color: #6e6e73;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-text strong {
+            color: #d4af37;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="card">
+        <!-- Inografikadagi Aynan O'sha Oltin Burgut Logotipi -->
+        <div class="avatar-container">
+            <div class="avatar-glow"></div>
+            <div class="avatar-inner">
+                <svg class="eagle-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#bf953f" />
+                            <stop offset="25%" stop-color="#fcf6ba" />
+                            <stop offset="50%" stop-color="#b38728" />
+                            <stop offset="75%" stop-color="#fbf5b7" />
+                            <stop offset="100%" stop-color="#aa771c" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Inografikadagi Burgut Bosh Vektor Chizgilari -->
+                    <g fill="url(#goldGradient)">
+                        <!-- Tumshuq (Beak) -->
+                        <path d="M 270 230 C 330 230 380 270 360 330 C 340 310 320 300 295 300 C 275 300 250 310 230 320 Z" />
+                        <!-- Tumshuq ustki qismi -->
+                        <path d="M 230 180 C 290 180 370 200 400 270 C 370 260 340 255 310 255 C 275 255 240 270 210 280 L 230 180 Z" />
+                        <!-- Ko'z atrofidagi patlar va qosh -->
+                        <path d="M 180 160 C 230 140 300 150 340 185 C 290 190 250 210 210 235 L 180 160 Z" />
+                        <!-- Bosh va bo'yin ustki va orqa patlari -->
+                        <path d="M 130 200 C 170 140 240 110 320 130 C 260 140 210 170 170 215 L 130 200 Z" />
+                        <path d="M 90 260 C 130 200 200 160 280 160 C 220 180 170 220 130 280 L 90 260 Z" />
+                        <!-- Pastki bo'yin va ko'krak patlari -->
+                        <path d="M 110 310 C 160 250 230 220 300 230 C 240 250 190 300 160 370 L 110 310 Z" />
+                        <path d="M 140 380 C 180 330 240 300 310 310 C 260 330 220 380 200 440 L 140 380 Z" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="brand-title">BURGUT DROBILKA</h1>
+        <p class="brand-subtitle">Universal Drobilka Mashinalari</p>
+
+        <!-- Slogans -->
+        <div class="badges">
+            <span class="badge">Sifat</span>
+            <span class="badge">Ishonch</span>
+            <span class="badge">Samaradorlik</span>
+        </div>
+
+        <!-- Link Buttons -->
+        <div class="links">
+            <!-- Instagram -->
+            <a href="https://instagram.com/_burgut_drobilka" target="_blank" class="link-card">
+                <div class="link-left">
+                    <div class="icon-box instagram-bg">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <div class="info-text">
+                        <span class="title">Instagram</span>
+                        <span class="subtitle">@_burgut_drobilka</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://youtube.com/@UnversalBURGUTdrobilka" target="_blank" class="link-card">
+                <div class="link-left">
+                    <div class="icon-box youtube-bg">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <div class="info-text">
+                        <span class="title">YouTube</span>
+                        <span class="subtitle">@UnversalBURGUTdrobilka</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <p class="footer-text">
+            &copy; 2026 <strong>BURGUT DROBILKA</strong>. Barcha huquqlar himoyalangan.
+        </p>
+    </div>
+
+</body>
+</html>
